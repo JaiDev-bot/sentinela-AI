@@ -32,6 +32,10 @@ public class Review {
         this.sentimentoScore = sentimentoScore;
     }
 
+    public Review(){
+
+    }
+
     public Long getId() {
         return id;
     }
