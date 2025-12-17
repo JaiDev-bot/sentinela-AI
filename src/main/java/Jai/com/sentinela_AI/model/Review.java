@@ -20,14 +20,16 @@ public class Review {
     private String sentimento;
     private String keyImportant;
     private String origem;
+    private double sentimentoScore;
 
-    public Review(Long id, String texto, LocalDateTime dataHora, String sentimento, String keyImportant, String origem) {
+    public Review(Long id, String texto, LocalDateTime dataHora, String sentimento, String keyImportant, String origem, double sentimentoScore) {
         this.id = id;
         this.texto = texto;
         this.dataHora = dataHora;
         this.sentimento = sentimento;
         this.keyImportant = keyImportant;
         this.origem = origem;
+        this.sentimentoScore = sentimentoScore;
     }
 
     public Long getId() {
@@ -76,6 +78,14 @@ public class Review {
 
     public void setOrigem(String origem) {
         this.origem = origem;
+    }
+
+    public double getSentimentoScore() {
+        return sentimentoScore;
+    }
+
+    public void setSentimentoScore(double sentimentoScore) {
+        this.sentimentoScore = sentimentoScore;
     }
 }
 
