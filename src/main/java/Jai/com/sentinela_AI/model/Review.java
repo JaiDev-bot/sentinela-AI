@@ -1,46 +1,48 @@
 package Jai.com.sentinela_AI.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+
+
 
 import java.time.LocalDateTime;
 
-@Entity
+
+import com.azure.spring.data.cosmos.core.mapping.Container;
+import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
+import org.springframework.data.annotation.Id;
+
+
+@Container(containerName = "Reviews")
 public class Review {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @PartitionKey
+    private String id;
 
     private String texto;
-    private LocalDateTime dataHora;
     private String sentimento;
-    private String keyImportant;
-    private String origem;
-    private double sentimentoScore;
+    private Double scorePositivo;
+    private Double scoreNegativo;
+    private LocalDateTime dataHora;
 
-    public Review(Long id, String texto, LocalDateTime dataHora, String sentimento, String keyImportant, String origem, double sentimentoScore) {
+    public Review(String id, String texto, String sentimento, Double scorePositivo, Double scoreNegativo, LocalDateTime dataHora) {
         this.id = id;
         this.texto = texto;
-        this.dataHora = dataHora;
         this.sentimento = sentimento;
-        this.keyImportant = keyImportant;
-        this.origem = origem;
-        this.sentimentoScore = sentimentoScore;
+        this.scorePositivo = scorePositivo;
+        this.scoreNegativo = scoreNegativo;
+        this.dataHora = dataHora;
     }
 
     public Review(){
 
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -52,14 +54,6 @@ public class Review {
         this.texto = texto;
     }
 
-    public LocalDateTime getDataHora() {
-        return dataHora;
-    }
-
-    public void setDataHora(LocalDateTime dataHora) {
-        this.dataHora = dataHora;
-    }
-
     public String getSentimento() {
         return sentimento;
     }
@@ -68,28 +62,28 @@ public class Review {
         this.sentimento = sentimento;
     }
 
-    public String getKeyImportant() {
-        return keyImportant;
+    public Double getScorePositivo() {
+        return scorePositivo;
     }
 
-    public void setKeyImportant(String keyImportant) {
-        this.keyImportant = keyImportant;
+    public void setScorePositivo(Double scorePositivo) {
+        this.scorePositivo = scorePositivo;
     }
 
-    public String getOrigem() {
-        return origem;
+    public Double getScoreNegativo() {
+        return scoreNegativo;
     }
 
-    public void setOrigem(String origem) {
-        this.origem = origem;
+    public void setScoreNegativo(Double scoreNegativo) {
+        this.scoreNegativo = scoreNegativo;
     }
 
-    public double getSentimentoScore() {
-        return sentimentoScore;
+    public LocalDateTime getDataHora() {
+        return dataHora;
     }
 
-    public void setSentimentoScore(double sentimentoScore) {
-        this.sentimentoScore = sentimentoScore;
+    public void setDataHora(LocalDateTime dataHora) {
+        this.dataHora = dataHora;
     }
 }
 

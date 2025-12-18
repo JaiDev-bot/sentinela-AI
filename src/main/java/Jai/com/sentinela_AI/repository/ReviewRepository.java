@@ -1,11 +1,11 @@
 package Jai.com.sentinela_AI.repository;
 
 import Jai.com.sentinela_AI.model.Review;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.azure.spring.data.cosmos.repository.CosmosRepository;
 import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface ReviewRepository extends JpaRepository<Review, Long> {
+public interface ReviewRepository extends CosmosRepository<Review, String> {
 
 }

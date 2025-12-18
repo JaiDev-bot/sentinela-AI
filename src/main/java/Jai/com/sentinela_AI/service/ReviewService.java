@@ -7,7 +7,9 @@ import com.azure.ai.textanalytics.TextAnalyticsClient;
 import com.azure.ai.textanalytics.models.DocumentSentiment;
 import org.springframework.stereotype.Service;
 
+
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Service
 public class ReviewService {
@@ -22,31 +24,32 @@ public class ReviewService {
     }
 
 
-    public Review AnalisaESalva (String text, String source) {
-        DocumentSentiment docSentiment = textAnalyticsClient.analyzeSentiment(text);
+    public Review analisaESalva(String text, String source) {
 
+        DocumentSentiment docSentiment = textAnalyticsClient.analyzeSentiment(text, "pt");
 
-        double positivo = docSentiment.getConfidenceScores().getPositive();
-        double neutro = docSentiment.getConfidenceScores().getNeutral();
-        double negativo = docSentiment.getConfidenceScores().getNegative();
 
         Review review = new Review();
+
+        // se o @GeneratedValue não funcionar, o ID gera aqui
+        review.setId(UUID.randomUUID().toString());
+
         review.setTexto(text);
-        review.setOrigem(source);
         review.setDataHora(LocalDateTime.now());
 
 
-        // o sentimento que a IA achou predominante (Positive, negative ou neutral)
-        review.setSentimento(docSentiment.getSentiment().toString().toUpperCase());
+        String sentimentoFinal = docSentiment.getSentiment().toString().toUpperCase();
+        review.setSentimento(sentimentoFinal);
 
-        // o score do sentimento que venceu
-        if (review.getSentimento().equals("POSITIVE")) review.setSentimentoScore(positivo);
-        else if (review.getSentimento().equals("NEGATIVE")) review.setSentimentoScore(negativo);
-        else review.setSentimentoScore(neutro);
+        //  Atribui os scores detalhados
+        review.setScorePositivo(docSentiment.getConfidenceScores().getPositive());
+        review.setScoreNegativo(docSentiment.getConfidenceScores().getNegative());
+
 
         return reviewRepository.save(review);
     }
-    }
+}
+
 
 
 
