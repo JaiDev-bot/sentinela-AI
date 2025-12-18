@@ -48,6 +48,12 @@ public class ReviewService {
 
         return reviewRepository.save(review);
     }
+
+    public Iterable<Review> buscarTodos() {
+        return reviewRepository.findAll();
+    }
+
+
 }
 
 
