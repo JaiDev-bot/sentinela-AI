@@ -23,27 +23,31 @@ public class ReviewService {
 
 
     public Review AnalisaESalva (String text, String source) {
-        //  Sentimento (Puxa do Azure)
         DocumentSentiment docSentiment = textAnalyticsClient.analyzeSentiment(text);
 
 
-        String frases = String.join(", ", textAnalyticsClient.extractKeyPhrases(text));
-
+        double positivo = docSentiment.getConfidenceScores().getPositive();
+        double neutro = docSentiment.getConfidenceScores().getNeutral();
+        double negativo = docSentiment.getConfidenceScores().getNegative();
 
         Review review = new Review();
         review.setTexto(text);
         review.setOrigem(source);
         review.setDataHora(LocalDateTime.now());
-        review.setKeyImportant(frases);
 
 
-        review.setSentimento(docSentiment.getSentiment().toString());
-        review.setSentimentoScore(docSentiment.getConfidenceScores().getPositive());
+        // o sentimento que a IA achou predominante (Positive, negative ou neutral)
+        review.setSentimento(docSentiment.getSentiment().toString().toUpperCase());
 
+        // o score do sentimento que venceu
+        if (review.getSentimento().equals("POSITIVE")) review.setSentimentoScore(positivo);
+        else if (review.getSentimento().equals("NEGATIVE")) review.setSentimentoScore(negativo);
+        else review.setSentimentoScore(neutro);
 
         return reviewRepository.save(review);
+    }
     }
 
 
 
-}
+

@@ -25,8 +25,6 @@ public class ReviewController {
         String texto = payload.get("text");
         String origem = payload.getOrDefault("source", "WEB");
 
-
-
         Review resultado = reviewService.AnalisaESalva(texto, origem);
 
         return new ResponseEntity<>(resultado, HttpStatus.CREATED);
