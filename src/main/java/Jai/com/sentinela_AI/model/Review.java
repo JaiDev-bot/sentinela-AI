@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 
 import com.azure.spring.data.cosmos.core.mapping.Container;
 import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
+import com.opencsv.bean.CsvBindByName;
 import org.springframework.data.annotation.Id;
 
 
@@ -19,19 +20,22 @@ public class Review {
     @PartitionKey
     private String id;
 
+    @CsvBindByName(column = "review_comment_message")
     private String texto;
     private String sentimento;
     private Double scorePositivo;
     private Double scoreNegativo;
     private LocalDateTime dataHora;
+    private String origem;
 
-    public Review(String id, String texto, String sentimento, Double scorePositivo, Double scoreNegativo, LocalDateTime dataHora) {
+    public Review(String id, String texto, String sentimento, Double scorePositivo, Double scoreNegativo, LocalDateTime dataHora, String origem) {
         this.id = id;
         this.texto = texto;
         this.sentimento = sentimento;
         this.scorePositivo = scorePositivo;
         this.scoreNegativo = scoreNegativo;
         this.dataHora = dataHora;
+        this.origem = origem;
     }
 
     public Review(){
@@ -84,6 +88,14 @@ public class Review {
 
     public void setDataHora(LocalDateTime dataHora) {
         this.dataHora = dataHora;
+    }
+
+    public String getOrigem() {
+        return origem;
+    }
+
+    public void setOrigem(String origem) {
+        this.origem = origem;
     }
 }
 

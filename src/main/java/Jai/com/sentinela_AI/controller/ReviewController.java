@@ -36,6 +36,16 @@ public class ReviewController {
         return ResponseEntity.ok(reviews);
     }
 
+    @GetMapping("/importar")
+    public String importar() {
+
+        new Thread(() -> {
+            reviewService.importarReviews20k();
+        }).start();
+
+        return " Operação iniciada no servidor! Acompanhe os logs no IntelliJ ";
+    }
+
 
 }
 

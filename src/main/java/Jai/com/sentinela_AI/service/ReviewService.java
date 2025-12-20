@@ -6,6 +6,8 @@ import Jai.com.sentinela_AI.repository.ReviewRepository;
 import com.azure.ai.textanalytics.TextAnalyticsClient;
 import com.azure.ai.textanalytics.models.DocumentSentiment;
 import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
+import com.opencsv.RFC4180ParserBuilder;
 import org.springframework.stereotype.Service;
 
 
@@ -22,7 +24,7 @@ public class ReviewService {
     private final ReviewRepository reviewRepository;
     private TextAnalyticsClient textAnalyticsClient;
 
-    public ReviewService(ReviewRepository reviewRepository, TextAnalyticsClient textAnalyticsClient){
+    public ReviewService(ReviewRepository reviewRepository, TextAnalyticsClient textAnalyticsClient) {
         this.reviewRepository = reviewRepository;
         this.textAnalyticsClient = textAnalyticsClient;
     }
@@ -57,43 +59,63 @@ public class ReviewService {
         return reviewRepository.findAll();
     }
 
-    public void importarReviews(String caminhoArquivo) {
 
-        try (CSVReader reader = new CSVReader(new FileReader("C:/Users/jaian/IdeaProjects/sentinela-AI/data/olist_order_reviews_dataset.csv"));) {
+    public void importar() {
+        String caminhoArquivo = "C:/Users/jaian/IdeaProjects/sentinela-AI/data/olist_order_reviews_dataset.csv";
+
+        try (com.opencsv.CSVReader reader = new com.opencsv.CSVReaderBuilder(new java.io.FileReader(caminhoArquivo))
+                .withCSVParser(new com.opencsv.RFC4180ParserBuilder().withSeparator(',').build()).build()) {
+
+            reader.readNext();
             String[] linha;
-            reader.readNext(); //Pula o cabeçalho
-
             int processados = 0;
-            int meta = 3;
+            int meta = 30000;
 
-            while ((linha = reader.readNext()) != null && processados < meta) {
+            System.out.println(" Iniciando...");
+
+            while (processados < meta) {
+                linha = reader.readNext();
+                if (linha == null) break;
 
                 if (linha.length > 3) {
-                    String comentario = linha[3];
+                    String comentario = linha[3].trim();
 
-                    if (comentario != null && comentario.length() > 10) {
+                    //filtro
+                    if (!comentario.isEmpty() && comentario.length() > 10 && comentario.length() < 150) {
+
                         try {
-                            // Chama  lógica da IA e Cosmos
-                            analisaESalva(comentario, "Olist_Real");
-                            processados++;
-                            if (processados % 10 == 0) {
-                                System.out.println(" Progresso: " + processados + "/" + meta);
-                            }
-                        } catch (Exception e) {
+                            Review review = new Review();
+                            review.setId(java.util.UUID.randomUUID().toString());
+                            review.setTexto(comentario);
 
-                            continue;
+                            // Chamada da IA com limite
+                            String analise = textAnalyticsClient.analyzeSentiment(comentario).getSentiment().toString();
+                            review.setSentimento(analise);
+
+                            reviewRepository.save(review);
+                            processados++;
+
+
+                            Thread.sleep(200);
+
+                            if (processados % 100 == 0) {
+                                System.out.println("✅ [PROGRESSO] " + processados + " registros salvos. Crédito Azure respirando...");
+                            }
+
+                        } catch (Exception e) {
+                            System.out.println(" Pulando um registro por erro: " + e.getMessage());
+                            Thread.sleep(1000);
                         }
                     }
                 }
             }
-            System.out.println("Finalizado! " + processados + " reviews enviadas para o Azure Cosmos DB.");
         } catch (Exception e) {
-            System.err.println(" Erro ao abrir o CSV: " + e.getMessage());
+            System.err.println("Erro: " + e.getMessage());
         }
     }
 
-
 }
+
 
 
 
