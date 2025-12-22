@@ -27,7 +27,7 @@ Após o processamento de **10.620 registros**, consolidamos os seguintes indicad
 
 ## Desafios e dificuldades
 
-**Escalabilidade e filtros de Dados:** Inicialmente, tentei processar 50.000 linhas, mas enfrentei diversos problemas com filtros de dados e inconsistências no CSV original(seja por espaços demais ou caracteres estranhos). Reduzi a meta para 30.000 linhas e, após tratamentos de limpeza, 10.620 registros foram processados com sucesso.
+**Escalabilidade e filtros de dados:** Inicialmente, tentei processar 50.000 linhas, mas enfrentei diversos problemas com filtros de dados e inconsistências no CSV original(seja por espaços demais ou caracteres estranhos). Reduzi a meta para 30.000 linhas e, após tratamentos de limpeza, 10.620 registros foram processados com sucesso.
 
 **Configuração de banco de dados:** Tive dificuldades iniciais para conectar e manter a persistência ativa no Cosmos DB, o que exigiu refatoração da camada de repositório.
 
@@ -65,10 +65,12 @@ Após o processamento de **10.620 registros**, consolidamos os seguintes indicad
   <summary> Clique aqui para perguntas sobre o projeto</summary>
   
 
-  **Por que analise de sentimento de comentarios da Olist?**
-
   
-  **Por que Cosmos Database e não PostgresSQL ou mySQL?**
+ **Por que Cosmos Database e não PostgresSQL ou mySQL?**
+
+**Jai:** Os comentários de clientes são imprevisíveis. Hoje você guarda só o texto e o sentimento, mas amanhã a Azure pode atualizar a IA e te mandar 50 novos campos de metadados. No Cosmos DB, você simplesmente salva o novo JSON sem precisar derrubar o banco para mudar o "schema", algo que no Postgres ou MySQL seria uma dor de cabeça.
+
+**Jai:** Além do mais, o Cosmos é um banco de dados que foi feito para aguentar trafego em grande escala. Ele distribui dados pelo mundo todo rapidamente. Se a Olist cresce 10x amanhã, o Cosmos consegue aguentar o tranco apenas aumentando a taxa de transferência (RUs).
   
   
 
