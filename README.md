@@ -27,6 +27,8 @@ Após o processamento de **10.620 registros**, consolidamos os seguintes indicad
 
 ## Desafios e dificuldades
 
+**Escalabilidade e filtros de Dados:** Inicialmente, tentei processar 50.000 linhas, mas enfrentei diversos problemas com filtros de dados e inconsistências no CSV original(seja por espaços demais ou caracteres estranhos). Reduzi a meta para 30.000 linhas e, após tratamentos de limpeza, 10.620 registros foram processados com sucesso.
+
 **Configuração de banco de dados:** Tive dificuldades iniciais para conectar e manter a persistência ativa no Cosmos DB, o que exigiu refatoração da camada de repositório.
 
 **Manipulação de JSON massivo:** Extrair e filtrar os dados específicos do arquivo JSON gerado pela Azure foi um desafio técnico que demandou o uso isolado de bibliotecas de parsing.
