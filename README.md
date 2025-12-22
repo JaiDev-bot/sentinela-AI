@@ -1,3 +1,26 @@
+# Sentinela AI - Análise de sentimentos em larga escala (Azure & Spring Boot)
+
+O Sentinela AI é uma solução de inteligência de dados desenvolvida para processar feedbacks de clientes em larga escala. Utilizando o ecossistema da Microsoft Azure, o projeto realiza a ingestão, análise e persistência de registros do dataset da Olist, transformando comentários brutos em métricas estratégicas.
+
+## 📂 Base de Dados
+Os dados utilizados neste projeto foram extraídos da plataforma Kaggle, referentes ao dataset público da Olist (Brazilian E-Commerce Public Dataset). Esta base contém informações reais de milhares de pedidos e avaliações de consumidores.
+
+## Tecnologias e Arquitetura
+
+* **Linguagem & Framework:** Java 21 com Spring Boot 3.4.12.
+* **Inteligência Artificial:** Azure Cognitive Services (Text Analytics API) para classificação de sentimentos.
+* **Banco de Dados:** Azure Cosmos DB (NoSQL) para armazenamento escalável.
+* **Processamento de Dados:** OpenCSV para leitura eficiente de datasets massivos.
+
+## 📊 Resultados da Análise (Dataset Olist)
+
+Após o processamento de **10.620 registros**, consolidamos os seguintes indicadores de satisfação:
+
+
+
+
+
+
 <details>
   <summary> Clique aqui para ver os prints da Azure (Cosmos DB & IA)</summary>
 
