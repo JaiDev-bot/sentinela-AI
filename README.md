@@ -16,9 +16,17 @@ Os dados utilizados neste projeto foram extraídos da plataforma Kaggle, referen
 
 Após o processamento de **10.620 registros**, consolidamos os seguintes indicadores de satisfação:
 
+![Print gráfico](https://github.com/JaiDev-bot/sentinela-AI/blob/main/GraficoPizza.png)
 
+## Desafios e Dificuldades
 
+**Configuração de Banco de Dados:** Tive dificuldades iniciais para conectar e manter a persistência ativa no Cosmos DB, o que exigiu refatoração da camada de repositório.
 
+**Manipulação de JSON Massivo:** Extrair e filtrar os dados específicos do arquivo JSON gerado pela Azure foi um desafio técnico que demandou o uso isolado de bibliotecas de parsing.
+
+**Limites de Nuvem:** Lidar com os limites do tier gratuito da Azure (Throttling) durante o processamento de 10k+ registros exigiu ajustes no tempo de requisição (Thread.sleep) para evitar falhas nas chamadas
+
+---
 
 
 <details>
@@ -42,4 +50,17 @@ Após o processamento de **10.620 registros**, consolidamos os seguintes indicad
   
  ![Print VSCODE](https://github.com/JaiDev-bot/sentinela-AI/blob/main/json.png)
 
+</details>
 
+<details>
+  <summary> Clique aqui para perguntas sobre o projeto</summary>
+  
+
+  **Por que analise de sentimento de comentarios da Olist?**
+
+  
+  **Por que Cosmos Database e não PostgresSQL ou mySQL?**
+  
+  
+
+</details>
