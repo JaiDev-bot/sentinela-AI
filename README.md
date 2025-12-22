@@ -27,11 +27,11 @@ Após o processamento de **10.620 registros**, consolidamos os seguintes indicad
 
 ## Desafios e dificuldades
 
-**Configuração de Banco de Dados:** Tive dificuldades iniciais para conectar e manter a persistência ativa no Cosmos DB, o que exigiu refatoração da camada de repositório.
+**Configuração de banco de dados:** Tive dificuldades iniciais para conectar e manter a persistência ativa no Cosmos DB, o que exigiu refatoração da camada de repositório.
 
-**Manipulação de JSON Massivo:** Extrair e filtrar os dados específicos do arquivo JSON gerado pela Azure foi um desafio técnico que demandou o uso isolado de bibliotecas de parsing.
+**Manipulação de JSON massivo:** Extrair e filtrar os dados específicos do arquivo JSON gerado pela Azure foi um desafio técnico que demandou o uso isolado de bibliotecas de parsing.
 
-**Limites de Nuvem:** Lidar com os limites do tier gratuito da Azure (Throttling) durante o processamento de 10k+ registros exigiu ajustes no tempo de requisição (Thread.sleep) para evitar falhas nas chamadas
+**Limites de nuvem:** Lidar com os limites do tier gratuito da Azure (Throttling) durante o processamento de 10k+ registros exigiu ajustes no tempo de requisição (Thread.sleep) para evitar falhas nas chamadas
 
 ---
 
