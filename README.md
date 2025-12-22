@@ -5,6 +5,13 @@ O Sentinela AI é uma solução de inteligência de dados desenvolvida para proc
 ## 📂 Base de dados
 Os dados utilizados neste projeto foram extraídos da plataforma Kaggle, referentes ao dataset público da Olist (Brazilian E-Commerce Public Dataset). Esta base contém informações reais de milhares de pedidos e avaliações de consumidores.
 
+## Lógica de Inteligência Artificial
+O coração do projeto é a integração com o **Azure AI Language**. A lógica foi desenhada para que a IA atue como um classificador automático:
+
+* **Interpretação de Texto:** A aplicação envia o comentário bruto para a API de Linguagem da Azure.
+* **Classificação de Sentimento:** A IA processa o conteúdo e retorna uma etiqueta definitiva: **POSITIVE** (Positivo), **NEGATIVE** (Negativo) ou **NEUTRAL** (Neutro).
+
+
 ## Tecnologias e arquitetura
 
 * **Linguagem & Framework:** Java 21 com Spring Boot 3.4.12.
