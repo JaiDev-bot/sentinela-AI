@@ -2,23 +2,23 @@
 
 O Sentinela AI é uma solução de inteligência de dados desenvolvida para processar feedbacks de clientes em larga escala. Utilizando o ecossistema da Microsoft Azure, o projeto realiza a ingestão, análise e persistência de registros do dataset da Olist, transformando comentários brutos em métricas estratégicas.
 
-## 📂 Base de Dados
+## 📂 Base de dados
 Os dados utilizados neste projeto foram extraídos da plataforma Kaggle, referentes ao dataset público da Olist (Brazilian E-Commerce Public Dataset). Esta base contém informações reais de milhares de pedidos e avaliações de consumidores.
 
-## Tecnologias e Arquitetura
+## Tecnologias e arquitetura
 
 * **Linguagem & Framework:** Java 21 com Spring Boot 3.4.12.
 * **Inteligência Artificial:** Azure Cognitive Services (Text Analytics API) para classificação de sentimentos.
 * **Banco de Dados:** Azure Cosmos DB (NoSQL) para armazenamento escalável.
 * **Processamento de Dados:** OpenCSV para leitura eficiente de datasets massivos.
 
-## 📊 Resultados da Análise (Dataset Olist)
+## 📊 Resultados da análise (Dataset Olist)
 
 Após o processamento de **10.620 registros**, consolidamos os seguintes indicadores de satisfação:
 
 ![Print gráfico](https://github.com/JaiDev-bot/sentinela-AI/blob/main/GraficoPizza.png)
 
-## Desafios e Dificuldades
+## Desafios e dificuldades
 
 **Configuração de Banco de Dados:** Tive dificuldades iniciais para conectar e manter a persistência ativa no Cosmos DB, o que exigiu refatoração da camada de repositório.
 
@@ -32,7 +32,7 @@ Após o processamento de **10.620 registros**, consolidamos os seguintes indicad
 <details>
   <summary> Clique aqui para ver os prints da Azure (Cosmos DB & IA)</summary>
 
-  #### 1. Volume de Dados no Azure Cosmos DB
+  #### 1. Volume de dados no Azure Cosmos DB
   Neste print, mostro a execução da query SQL que comprova o processamento de mais de 10.000 registros.
   ![Print SQL Cosmos](https://github.com/JaiDev-bot/sentinela-AI/blob/main/Cosmo.png)
 
