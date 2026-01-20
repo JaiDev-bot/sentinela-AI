@@ -2,6 +2,15 @@
 
 O Sentinela AI é uma solução de inteligência de dados desenvolvida para processar feedbacks de clientes em larga escala. Utilizando o ecossistema da Microsoft Azure, o projeto realiza a ingestão, análise e persistência de registros do dataset da Olist, transformando comentários brutos em métricas estratégicas.
 
+>[!IMPORTANT]
+>Se quiser ver uma documentação mais detalhada sobre a arquitetura:
+>
+>[![GitBook](https://app.gitbook.com/invite/3BzJD9kc8XUB2pCNxAEC/tV7r1EIpqrsT9YR54yU3)
+>
+>
+>
+>
+
 ## 📂 Base de dados
 Os dados utilizados neste projeto foram extraídos da plataforma Kaggle, referentes ao dataset público da Olist (Brazilian E-Commerce Public Dataset). Esta base contém informações reais de milhares de pedidos e avaliações de consumidores.
 
