@@ -5,7 +5,7 @@ O Sentinela AI é uma solução de inteligência de dados desenvolvida para proc
 >[!IMPORTANT]
 >Se quiser ver uma documentação mais detalhada sobre a arquitetura:
 >
->[![GitBook](https://app.gitbook.com/invite/3BzJD9kc8XUB2pCNxAEC/tV7r1EIpqrsT9YR54yU3)
+>[![GitBook](https://img.shields.io/badge/GITBOOK-000?style=for-the-badge&logoColor=FFF&color=000)](https://app.gitbook.com/invite/3BzJD9kc8XUB2pCNxAEC/tV7r1EIpqrsT9YR54yU3)
 >
 >
 >
