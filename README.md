@@ -17,16 +17,16 @@ Os dados utilizados neste projeto foram extraídos da plataforma Kaggle, referen
 ## Lógica de Inteligência Artificial
 O coração do projeto é a integração com o **Azure AI Language**. A lógica foi desenhada para que a IA atue como um classificador automático:
 
-* **Interpretação de Texto:** A aplicação envia o comentário bruto para a API de Linguagem da Azure.
-* **Classificação de Sentimento:** A IA processa o conteúdo e retorna uma etiqueta definitiva: **POSITIVE** (Positivo), **NEGATIVE** (Negativo) ou **NEUTRAL** (Neutro).
+* **Interpretação de texto:** A aplicação envia o comentário bruto para a API de Linguagem da Azure.
+* **Classificação de sentimento:** A IA processa o conteúdo e retorna uma etiqueta definitiva: **POSITIVE** (Positivo), **NEGATIVE** (Negativo) ou **NEUTRAL** (Neutro).
 
 
 ## Tecnologias e arquitetura
 
-* **Linguagem & Framework:** Java 21 com Spring Boot 3.4.12.
+* **Linguagem & framework:** Java 21 com Spring Boot 3.4.12.
 * **Inteligência Artificial:** Azure Cognitive Services (Text Analytics API) para classificação de sentimentos.
-* **Banco de Dados:** Azure Cosmos DB (NoSQL) para armazenamento escalável.
-* **Processamento de Dados:** OpenCSV para leitura eficiente de datasets massivos.
+* **Banco de dados:** Azure Cosmos DB (NoSQL) para armazenamento escalável.
+* **Processamento de dados:** OpenCSV para leitura eficiente de datasets massivos.
 
 ## 📊 Resultados da análise (Dataset Olist)
 
