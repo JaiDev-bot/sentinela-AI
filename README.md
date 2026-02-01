@@ -34,6 +34,35 @@ Após o processamento de **10.620 registros**, consolidamos os seguintes indicad
 
 ![Print gráfico](https://github.com/JaiDev-bot/sentinela-AI/blob/main/GraficoPizza.png)
 
+ ## Diagrama de fluxo
+
+```mermaid
+flowchart TD
+    subgraph Local_Environment ["Ambiente local (Spring Boot)"]
+        A[(Dataset Olist .csv)] --> B[ReviewService]
+        B --> C{Filtros de dados}
+        C -- "Texto válido" --> D[Text Analytics Client]
+        C -- "Inválido" --> Z[Ignorar registro]
+    end
+
+    subgraph Azure_Cloud ["Microsoft Azure infrastructure"]
+        D -- "Requisição (SDK Java)" --> E[[Azure AI Language]]
+        E -- "Análise de sentimento" --> D
+        D -- "Objeto review (JSON)" --> F[(Azure Cosmos DB)]
+    end
+
+    subgraph Controller_Interface ["Interface de acesso"]
+        G[ReviewController] <--> B
+        H[Postman/Web] -- "POST /analisar" --> G
+        H -- "GET /importar" --> G
+    end
+
+    %% Estilização 
+    style Azure_Cloud fill:#0078d4,color:#fff,stroke:#005a9e
+    style Local_Environment fill:#f4f4f4,stroke:#333,color:#000
+    style Controller_Interface fill:#2d2d2d,color:#fff,stroke:#000
+```
+
 ## Desafios e dificuldades
 
 **Escalabilidade e filtros de dados:** Inicialmente, tentei processar 50.000 linhas, mas enfrentei diversos problemas com filtros de dados e inconsistências no CSV original(seja por espaços demais ou caracteres estranhos). Reduzi a meta para 30.000 linhas e, após tratamentos de limpeza, 10.620 registros foram processados com sucesso.
